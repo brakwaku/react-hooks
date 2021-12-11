@@ -1,13 +1,14 @@
 import "./App.css";
+import Checked from "./components/Checked";
+import MyUseEffect from "./components/MyUseEffect";
 import StarRating from "./components/StarRating";
 
-function App({ name }) {
+function App() {
   return (
     <>
-      <div className="App">
-        <h1>Hello {name}!</h1>
-      </div>
       <StarRating totalStars={5} />
+      <MyUseEffect />
+      <Checked />
     </>
   );
 }

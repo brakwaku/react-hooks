@@ -6,25 +6,29 @@ const MyUseEffect = () => {
 
   useEffect(() => {
     document.title = `Celebrate ${name}`;
-  }, [name]);
 
-  useEffect(() => {
     console.log(`The user is: ${admin ? "Admin" : "Not admin"}`);
-  }, [admin]);
+  }, [name, admin]);
 
   return (
-    <section>
-      <p>Congratulations {name}!</p>
-      <button
-        onClick={() => {
-          setName(name === "Dan" ? "Ben" : "Dan");
-        }}
-      >
-        Change winner
-      </button>
-      <p>{admin ? "logged in" : "not logged in"}</p>
-      <button onClick={() => setAdmin(true)}>Log In</button>
-    </section>
+    <>
+      <div className="App">
+        <h1>Hello {name}!</h1>
+      </div>
+
+      <section>
+        <p>Congratulations {name}!</p>
+        <button
+          onClick={() => {
+            setName(name === "Dan" ? "Ben" : "Dan");
+          }}
+        >
+          Change winner
+        </button>
+        <p>{admin ? "logged in" : "not logged in"}</p>
+        <button onClick={() => setAdmin(true)}>Log In</button>
+      </section>
+    </>
   );
 };
 
