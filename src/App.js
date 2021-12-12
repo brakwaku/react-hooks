@@ -6,12 +6,12 @@ import StarRating from "./components/StarRating";
 
 function App() {
   return (
-    <>
-      <MyUseEffect />
+    <div className="app-wrapper">
+      <MyUseEffect /><br />
       <StarRating totalStars={5} />
       <Checked />
       <FetchData />
-    </>
+    </div>
   );
 }
 

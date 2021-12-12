@@ -11,24 +11,18 @@ const MyUseEffect = () => {
   }, [name, admin]);
 
   return (
-    <>
-      <div className="App">
-        <h1>Hello {name}!</h1>
-      </div>
-
-      <section>
-        <p>Congratulations {name}!</p>
-        <button
-          onClick={() => {
-            setName(name === "Dan" ? "Ben" : "Dan");
-          }}
-        >
-          Change winner
-        </button>
-        <p>{admin ? "logged in" : "not logged in"}</p>
-        <button onClick={() => setAdmin(true)}>Log In</button>
-      </section>
-    </>
+    <section>
+      <p>Congratulations {name}!</p>
+      <button
+        onClick={() => {
+          setName(name === "Dan" ? "Ben" : "Dan");
+        }}
+      >
+        Change winner
+      </button>
+      <p>{admin ? "logged in" : "not logged in"}</p>
+      <button onClick={() => setAdmin(true)}>Log In</button>
+    </section>
   );
 };
 
