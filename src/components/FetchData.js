@@ -11,11 +11,14 @@ const FetchData = () => {
 
   if (data) {
     return (
-      <ul>
-        {data.map((user) => (
-          <li key={user.id}>{user.login}</li>
-        ))}
-      </ul>
+      <>
+      <a href="/use-reducer"><button>Use Reducer</button></a>
+        <ul>
+          {data.map((user) => (
+            <li key={user.id}>{user.login}</li>
+          ))}
+        </ul>
+      </>
     );
   }
 
