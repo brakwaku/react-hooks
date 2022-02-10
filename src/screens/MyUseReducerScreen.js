@@ -1,5 +1,8 @@
 import React, { useReducer, useRef } from 'react';
+import MyContext from '../components/MyContext';
 import { useInput } from '../components/useInput';
+import { useTrees } from '../index';
+import { useFetch } from '../components/MyUseFetch';
 
 const initialState = {
   message: 'Hi',
@@ -23,8 +26,12 @@ const reducer = (state, action) => {
 const MyUseReducerScreen = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const { trees } = useTrees();
+
   const [titleProps, resetTitle] = useInput('');
   const [colorProps, resetColor] = useInput('#000000');
+
+  const { loading, data, error } = useFetch(`https://api.github.com/users/brakwaku`)
 
   const sound = useRef();
   const color = useRef();
@@ -57,21 +64,22 @@ const MyUseReducerScreen = () => {
         <a href="/">
           <button>Home</button>
         </a>
-        <hr />
-
-        <div>
-          <h1>useRef</h1>
-          <form onSubmit={submit}>
-            <input ref={sound} type="text" placeholder="Sound..." />
-            <input ref={color} type="color" />
-            <button>ADD</button>
-          </form>
-        </div>
       </div>
+      <hr />
+
+      <div className="app-wrapper">
+        <h1>useRef</h1>
+        <form onSubmit={submit}>
+          <input ref={sound} type="text" placeholder="Sound..." />
+          <input ref={color} type="color" />
+          <button>ADD</button>
+        </form>
+      </div>
+      <hr />
 
       <div className="app-wrapper">
         <div>
-        <h1>Custom Hook</h1>
+          <h1>Custom Hook</h1>
           <form onSubmit={submit2}>
             <input {...titleProps} type="text" placeholder="Sound..." />
             <input {...colorProps} type="color" />
@@ -79,6 +87,27 @@ const MyUseReducerScreen = () => {
           </form>
         </div>
       </div>
+      <hr />
+
+      <div className="app-wrapper">
+        <div>
+          <h1>useFetch</h1>
+          {loading && <h1>Loading...</h1>}
+          {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
+          {data && <div>
+              <img src={data.avatar_url} alt={data.login} />
+              <div>
+                  <h1>@{data.login}</h1>
+                  {data.name && <p>{data.name}</p>}
+                  {data.location && <p>{data.location}</p>}
+              </div>
+              </div>}
+        </div>
+      </div>
+      <hr />
+
+      <MyContext result={trees} />
+      <hr />
     </>
   );
 };
